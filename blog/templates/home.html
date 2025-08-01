@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to MyBlog{% endblock %}
+
+{% block content %}
+<!-- MyBlog Introduction Section -->
+<section class="container mt-5 mb-5">
+  <h1 class="text-center mb-4">👋 Welcome to <strong>MyBlog</strong></h1>
+  <p class="lead text-center">
+    <strong>MyBlog</strong> is your digital space to explore ideas, share stories, and stay inspired.
+    Whether you're here to learn something new, find solutions, or just enjoy a good read —
+    you've come to the right place.
+  </p>
+
+  <div class="row text-center mt-4">
+    <div class="col-md-3 col-6 mb-3">
+      💡 <strong>Technology & Trends</strong>
+    </div>
+    <div class="col-md-3 col-6 mb-3">
+      ✍️ <strong>Personal Thoughts</strong>
+    </div>
+    <div class="col-md-3 col-6 mb-3">
+      📚 <strong>Learning Resources</strong>
+    </div>
+    <div class="col-md-3 col-6 mb-3">
+      🌍 <strong>Lifestyle & Inspiration</strong>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <em>Write with purpose. Read with curiosity. Grow with the community.</em><br><br>
+    <a href="{% url 'blog_list' %}" class="btn btn-outline-dark">📖 View All Blogs</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'create_blog' %}" class="btn btn-outline-dark">+ Create Post</a>
+          {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-dark">+ Create Post</a>
+          {% endif %}
+    
+  </div>
+</section><br>
+{% endblock %}
