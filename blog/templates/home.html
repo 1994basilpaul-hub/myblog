@@ -3,39 +3,49 @@
 {% block title %}Welcome to MyBlog{% endblock %}
 
 {% block content %}
-<!-- MyBlog Introduction Section -->
 <section class="container mt-5 mb-5">
   <h1 class="text-center mb-4">👋 Welcome to <strong>MyBlog</strong></h1>
-  <p class="lead text-center">
+  <p class="lead text-center px-3 px-md-0">
     <strong>MyBlog</strong> is your digital space to explore ideas, share stories, and stay inspired.
     Whether you're here to learn something new, find solutions, or just enjoy a good read —
     you've come to the right place.
   </p>
 
   <div class="row text-center mt-4">
-    <div class="col-md-3 col-6 mb-3">
-      💡 <strong>Technology & Trends</strong>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="p-3 border rounded shadow-sm h-100 d-flex flex-column justify-content-center align-items-center">
+        <div style="font-size: 2rem;">💡</div>
+        <strong class="mt-2">Technology & Trends</strong>
+      </div>
     </div>
-    <div class="col-md-3 col-6 mb-3">
-      ✍️ <strong>Personal Thoughts</strong>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="p-3 border rounded shadow-sm h-100 d-flex flex-column justify-content-center align-items-center">
+        <div style="font-size: 2rem;">✍️</div>
+        <strong class="mt-2">Personal Thoughts</strong>
+      </div>
     </div>
-    <div class="col-md-3 col-6 mb-3">
-      📚 <strong>Learning Resources</strong>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="p-3 border rounded shadow-sm h-100 d-flex flex-column justify-content-center align-items-center">
+        <div style="font-size: 2rem;">📚</div>
+        <strong class="mt-2">Learning Resources</strong>
+      </div>
     </div>
-    <div class="col-md-3 col-6 mb-3">
-      🌍 <strong>Lifestyle & Inspiration</strong>
+    <div class="col-6 col-md-3 mb-3">
+      <div class="p-3 border rounded shadow-sm h-100 d-flex flex-column justify-content-center align-items-center">
+        <div style="font-size: 2rem;">🌍</div>
+        <strong class="mt-2">Lifestyle & Inspiration</strong>
+      </div>
     </div>
   </div>
 
-  <div class="text-center mt-4">
-    <em>Write with purpose. Read with curiosity. Grow with the community.</em><br><br>
-    <a href="{% url 'blog_list' %}" class="btn btn-outline-dark">📖 View All Blogs</a>
+  <div class="text-center mt-4 px-3 px-md-0">
+    <em class="d-block mb-4 fs-6 fst-italic">Write with purpose. Read with curiosity. Grow with the community.</em>
+    <a href="{% url 'blog_list' %}" class="btn btn-outline-dark me-2 mb-2 mb-md-0 px-4">📖 View All Blogs</a>
     {% if user.is_authenticated %}
-        <a href="{% url 'create_blog' %}" class="btn btn-outline-dark">+ Create Post</a>
-          {% else %}
-        <a href="{% url 'login' %}" class="btn btn-outline-dark">+ Create Post</a>
-          {% endif %}
-    
+      <a href="{% url 'create_blog' %}" class="btn btn-outline-dark px-4">+ Create Post</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-outline-dark px-4">+ Create Post</a>
+    {% endif %}
   </div>
-</section><br>
+</section>
 {% endblock %}

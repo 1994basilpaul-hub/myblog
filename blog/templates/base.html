@@ -7,35 +7,67 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
-    /* Navbar active link styling */
+    /* Active nav link */
     .nav-link.active {
       font-weight: 600;
       color: #0d6efd !important;
       border-bottom: 2px solid #0d6efd;
     }
-    /* Smooth button shadows */
+
+    /* Button shadow smoothness */
     .btn {
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       transition: box-shadow 0.3s ease;
     }
+
     .btn:hover, .btn:focus {
       box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
-    /* Navbar brand - bolder and larger */
+
+    /* Navbar brand logo styling */
     .navbar-brand {
       font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: 1.5px;
     }
-    /* Footer styling */
+
+    /* Footer design */
     footer {
       background: linear-gradient(135deg, #343a40 0%, #212529 100%);
       font-size: 0.9rem;
     }
-    /* Search input bigger on desktop */
+
+    /* Search box width - desktop */
     @media (min-width: 768px) {
       form.d-flex input.form-control {
         width: 250px;
+      }
+    }
+
+    /* Responsive button spacing */
+    @media (max-width: 767.98px) {
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.75rem;
+      }
+
+      .navbar-nav {
+        text-align: center;
+      }
+
+      form.d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+      }
+
+      form.d-flex input,
+      form.d-flex button {
+        width: 100%;
+      }
+
+      .navbar-toggler {
+        margin-bottom: 1rem;
       }
     }
   </style>
@@ -51,8 +83,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-
-      <!-- Left links -->
+      <!-- Left nav links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
@@ -67,22 +98,22 @@
         {% endif %}
       </ul>
 
-      <!-- Right side: Search + Create Post + User Info -->
-      <div class="d-flex align-items-center ms-auto">
+      <!-- Right section -->
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center ms-auto gap-2">
         <!-- Search form -->
-        <form class="d-flex me-3" method="get" action="{% url 'blog_list' %}">
+        <form class="d-flex me-lg-3" method="get" action="{% url 'blog_list' %}">
           <input class="form-control me-2 rounded-pill" type="search" name="q" placeholder="Search..." value="{{ request.GET.q|default:'' }}" aria-label="Search" />
           <button class="btn btn-outline-light rounded-pill px-4" type="submit">Search</button>
         </form>
 
         <!-- Create Post -->
         {% if user.is_authenticated %}
-        <a href="{% url 'create_blog' %}" class="btn btn-success me-3 rounded-pill shadow-sm px-4 py-2 fs-6">+ Create Post</a>
+        <a href="{% url 'create_blog' %}" class="btn btn-success rounded-pill shadow-sm px-4 py-2">+ Create Post</a>
         {% else %}
-        <a href="{% url 'login' %}" class="btn btn-outline-light me-3 rounded-pill px-4 py-2 fs-6">+ Create Post</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-light rounded-pill px-4 py-2">+ Create Post</a>
         {% endif %}
 
-        <!-- Auth Links -->
+        <!-- Auth links -->
         <ul class="navbar-nav d-flex flex-row align-items-center gap-3 mb-0">
           {% if user.is_authenticated %}
           <li class="nav-item">
@@ -101,11 +132,11 @@
           {% endif %}
         </ul>
       </div>
-
     </div>
   </div>
 </nav>
 
+<!-- Flash Messages -->
 <div class="container mt-3">
   {% if messages %}
     {% for message in messages %}
@@ -116,13 +147,12 @@
 
 <!-- Main Content -->
 <div class="container">
-  {% block content %}
-  {% endblock %}
+  {% block content %}{% endblock %}
 </div>
 
 <!-- Footer -->
 <footer class="text-white text-center py-3 mt-5">
-  <div class="container d-flex justify-content-center align-items-center gap-2">
+  <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
     <small>&copy; 2025 My Blog. All rights reserved.</small>
     <span class="text-muted">|</span>
     <a href="#" class="text-white text-decoration-none" title="Contact">Contact</a>
